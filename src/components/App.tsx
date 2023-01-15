@@ -1,9 +1,12 @@
 import React, { FC } from "react";
+import AddressAutocomplete from "./AddressAutocomplete/AddressAutocomplete";
+import Map from "./Map/Map";
 import styles from "./App.module.scss";
 
 const App: FC = () => (
   <div className={styles.app}>
-    <header className={styles.header}>My map App</header>
+    <AddressAutocomplete></AddressAutocomplete>
+    <Map></Map>
   </div>
 );
 
