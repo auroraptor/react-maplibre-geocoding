@@ -1,5 +1,6 @@
 import React, { FC, useRef, useEffect, useState } from "react";
 import maplibregl from "maplibre-gl";
+import 'maplibre-gl/dist/maplibre-gl.css';
 import styles from "./Map.module.scss";
 
 const Map: FC = () => {
@@ -18,6 +19,11 @@ const Map: FC = () => {
       center: [lng, lat],
       zoom: zoom,
     });
+    // map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+    new maplibregl.Marker({color: "#FF0000"})
+      .setLngLat([139.7525,35.6846])
+      .addTo(map.current);
+
   });
 
   return (
