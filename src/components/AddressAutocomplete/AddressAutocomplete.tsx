@@ -14,7 +14,7 @@ type UseGeodataProp = {
 }
 
 type SuggestionsProp = {
-    suggestions: string[];
+    suggestions: {}[];
 }
 
 const useGeodata = (props: UseGeodataProp) => {
@@ -23,7 +23,9 @@ const useGeodata = (props: UseGeodataProp) => {
         async (...args) => {
             try {               
                 console.log('================', args);
-                return fetch('https://api.kanye.rest/').then((res) => res.json());
+                return fetch(`https://api.geoapify.com/v1/geocode/search?text=${props.query}&apiKey=83a20212025a4afdbc9176d77d1cc513`)
+                .then((res) => res.json())
+                .then((res) => res.features);
                 
             } catch (e) {
                 console.error('Error on geodata request ', e);
@@ -41,7 +43,7 @@ const Suggestions = (props: SuggestionsProp) => {
               key={index}
               onClick={() => alert(`onSelect ${index}`)}
             >
-              {suggestion}
+              {JSON.stringify(suggestion)}
             </li>
           );
         })}
@@ -64,7 +66,7 @@ export const AddressAutocomplete = () => {
     return (
         <>
             <input placeholder="Enter an address" onChange={handleInputChange} className={styles.input}/>
-            {suggestionsActive && <Suggestions suggestions={[JSON.stringify(data), 'JSON.stringify(data)', 'JSON.stringify(data)']}/>}
+            {suggestionsActive && <Suggestions suggestions={data || []}/>}
             {/* <div>{JSON.stringify(data)}</div> */}
             {/* <p>{value}</p> */}
         </>
