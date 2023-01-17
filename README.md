@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Map App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Gif](https://media.giphy.com/media/8xssLoynwFbuAngkXj/giphy.gif)
 
-## Available Scripts
+Визуализация прямого геокодирования 🗺
 
-In the project directory, you can run:
+- [x] Пользователь вводит текст в поисковую строку
 
-### `npm start`
+- [x] Ему отображается список адресов, подходящих под его запрос
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [x] Пользователь выбирает нужный адрес
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [x] При клике по адресу отображается его координата на карте. 
 
-### `npm test`
+## Стэк
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Typescript 
 
-### `npm run build`
+* React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Maplibre GL
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Geoapify
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* React Query
 
-### `npm run eject`
+* Lodash Debounce
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Зачем? 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+React Query - здоровая альтернатива Redux для получения, кэширования, синхронизации и обновления геоданных.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Lodash Debounce - или как не положить сервер большим потоком запросов. Вызов запроса отложен на 400мс потому что это оптимальное время ответа при взаимодействии человека и приложения (Laws of UX).
 
-## Learn More
+Bonus: button reset - добавила инпуту крестик удобства ради ✌️
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
