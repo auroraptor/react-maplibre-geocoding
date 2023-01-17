@@ -1,74 +1,107 @@
-import React, { useCallback, useState } from 'react'
-import debounce from 'lodash.debounce';
-import { useQuery } from 'react-query';
+import React, { useCallback, useState } from "react";
+import debounce from "lodash.debounce";
+import { useQuery } from "react-query";
 
-import styles from './AddressAutocomplete.module.scss';
-
+import styles from "./AddressAutocomplete.module.scss";
 
 type GeoData = {
-    address: string;
-}
+  properties: { formatted: string };
+  geometry: { coordinates: [] };
+  address: string;
+};
 
 type UseGeodataProp = {
-    query: string;
-}
+  query: string;
+};
 
 type SuggestionsProp = {
-    suggestions: {}[];
-}
+  setSuggestionsActive: any;
+  onSelect: any;
+  suggestions: GeoData[];
+};
+
+type AddressAutocompleteProp = {
+  onSelect: any;
+};
 
 const useGeodata = (props: UseGeodataProp) => {
-    return useQuery<GeoData[]>(
-        ['geoSearch', props.query],
-        async (...args) => {
-            try {               
-                console.log('================', args);
-                return fetch(`https://api.geoapify.com/v1/geocode/search?text=${props.query}&apiKey=83a20212025a4afdbc9176d77d1cc513`)
-                .then((res) => res.json())
-                .then((res) => res.features);
-                
-            } catch (e) {
-                console.error('Error on geodata request ', e);
-            }
-        }
-    )
+  const API_KEY: string = "83a20212025a4afdbc9176d77d1cc513";
+
+  return useQuery<GeoData[]>(["geoSearch", props.query], async (...args) => {
+    try {
+      return fetch(
+        `https://api.geoapify.com/v1/geocode/search?text=${props.query}&apiKey=${API_KEY}`
+      )
+        .then((res) => res.json())
+        .then((res) => res.features);
+    } catch (e) {
+      console.error("Error on geodata request ", e);
+    }
+  });
 };
 
 const Suggestions = (props: SuggestionsProp) => {
-    return (
-      <ul className={styles.suggestions}>
-        {props.suggestions.map((suggestion, index) => {
-          return (
-            <li className={styles.item}
-              key={index}
-              onClick={() => alert(`onSelect ${index}`)}
-            >
-              {JSON.stringify(suggestion)}
-            </li>
-          );
-        })}
-      </ul>
-    );
-  };
+  return (
+    <ul className={styles.suggestions}>
+      {props.suggestions.map((suggestion, index) => {
+        return (
+          <li
+            className={styles.item}
+            key={index}
+            onClick={() => {
+              props.onSelect(suggestion.geometry.coordinates);
+              props.setSuggestionsActive(false);
+            }}
+          >
+            {suggestion.properties.formatted}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
 
-export const AddressAutocomplete = () => {
-    const [inputValue, setInputValue] = useState('');
-    const [suggestionsActive, setSuggestionsActive] = useState(false);
-    const { data } = useGeodata({ query: inputValue });
+export const AddressAutocomplete = (props: AddressAutocompleteProp) => {
+  const [inputValue, setInputValue] = useState("");
+  const [suggestionsActive, setSuggestionsActive] = useState(false);
+  const { data } = useGeodata({ query: inputValue });
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(debounce(({ target }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const handleInputChange: React.ChangeEventHandler<HTMLInputElement> =
+    useCallback(
+      debounce(({ target }) => {
         setInputValue(target.value);
         setSuggestionsActive(true);
         if (target.value === "") setSuggestionsActive(false);
-    }, 400), []);
-
-    return (
-        <>
-            <input placeholder="Enter an address" onChange={handleInputChange} className={styles.input}/>
-            {suggestionsActive && <Suggestions suggestions={data || []}/>}
-            {/* <div>{JSON.stringify(data)}</div> */}
-            {/* <p>{value}</p> */}
-        </>
+      }, 1000),
+      []
     );
+
+    const resetInputField = () => {
+        if(inputRef && inputRef.current) {
+          inputRef.current.value = "";
+          setSuggestionsActive(false);
+        }
+    };
+
+  return (
+    <>
+      <input
+        placeholder="Enter an address"
+        onChange={handleInputChange}
+        className={styles.input}
+        onFocus={() => setSuggestionsActive(true)}
+        ref={inputRef}
+      />
+      <button className={styles.close} onClick={resetInputField}/>
+      {suggestionsActive && (
+        <Suggestions
+          suggestions={data || []}
+          onSelect={props.onSelect}
+          setSuggestionsActive={setSuggestionsActive}
+        />
+      )}
+    </>
+  );
 };
