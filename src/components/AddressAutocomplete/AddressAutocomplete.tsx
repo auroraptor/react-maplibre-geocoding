@@ -74,7 +74,7 @@ export const AddressAutocomplete = (props: AddressAutocompleteProp) => {
         setInputValue(target.value);
         setSuggestionsActive(true);
         if (target.value === "") setSuggestionsActive(false);
-      }, 1000),
+      }, 400),
       []
     );
 
