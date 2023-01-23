@@ -22,10 +22,9 @@ const Map = (props: MapProp) => {
     });
 
     new maplibregl.Marker({ color: "#FF0000" })
-    .setLngLat(props.onSelect)
-    .addTo(map.current);
-
-  }, [props.onSelect])
+      .setLngLat(props.onSelect)
+      .addTo(map.current);
+  }, [props.onSelect]);
 
   return (
     <div className={styles.map_wrap}>
