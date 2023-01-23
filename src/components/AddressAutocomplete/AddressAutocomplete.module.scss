@@ -1,13 +1,11 @@
 .input {
   margin: 0;
-  padding: 0px;
   background-color: snow;
   color: black;
   font-size: 18px;
   line-height: 22px;
   text-align: start;
   padding: 20px;
-  margin: 0;
   border: none;
   position: relative;
 }
@@ -15,6 +13,7 @@
 .suggestions {
   list-style: none;
   margin: 0;
+  padding: 0;
   text-align: start;
   position: absolute;
   left: 0;
@@ -22,13 +21,11 @@
   z-index: 1;
   background-color: snow;
   width: 100%;
-  padding: 0;
   border-radius: 10px;
 }
 
 .item {
   padding: 10px;
-  margin: 10px;
   margin: 0;
 }
 
