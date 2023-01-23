@@ -1,28 +1,9 @@
 import React, { useCallback, useState } from "react";
 import debounce from "lodash.debounce";
 import { useQuery } from "react-query";
+import { GeoData, UseGeodataProp, SuggestionsProp, AddressAutocompleteProp } from "./types";
 
 import styles from "./AddressAutocomplete.module.scss";
-
-type GeoData = {
-  properties: { formatted: string };
-  geometry: { coordinates: [] };
-  address: string;
-};
-
-type UseGeodataProp = {
-  query: string;
-};
-
-type SuggestionsProp = {
-  setSuggestionsActive: any;
-  onSelect: any;
-  suggestions: GeoData[];
-};
-
-type AddressAutocompleteProp = {
-  onSelect: any;
-};
 
 const useGeodata = (props: UseGeodataProp) => {
   const API_KEY: string = "83a20212025a4afdbc9176d77d1cc513";
