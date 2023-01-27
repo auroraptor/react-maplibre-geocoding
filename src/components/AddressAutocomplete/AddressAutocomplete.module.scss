@@ -10,20 +10,6 @@
   position: relative;
 }
 
-.suggestions {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: start;
-  position: absolute;
-  left: 0;
-  top: 64px;
-  z-index: 1;
-  background-color: snow;
-  width: 100%;
-  border-radius: 10px;
-}
-
 .item {
   padding: 10px;
   margin: 0;
@@ -35,38 +21,44 @@
 }
 
 .close {
-	overflow: hidden;
-	position: absolute;
+  overflow: hidden;
+  position: absolute;
   right: 20px;
   top: 15px;
-	border: none;
-	padding: 0;
-	width: 2em; height: 2em;
-	border-radius: 50%;
-	background: transparent;
-	color: #1da1f2;
-	font: inherit;
-	text-indent: 100%;
-	cursor: pointer;
-	
-	&:focus {
-		outline: solid 0 transparent;
-		box-shadow: 0 0 0 2px #8ed0f9
-	}
-	
-	&:hover {
-		background: rgba(29, 161, 142, .1)
-	}
-	
-	&:before, &:after {
-		position: absolute;
-		top: 15%; left: calc(50% - .0625em);
-		width: .125em; height: 70%;
-		border-radius: .125em;
-		transform: rotate(45deg);
-		background: currentcolor;
-		content: ''
-	}
-	
-	&:after { transform: rotate(-45deg); }
+  border: none;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: transparent;
+  color: #1da1f2;
+  font: inherit;
+  text-indent: 100%;
+  cursor: pointer;
+
+  &:focus {
+    outline: solid 0 transparent;
+    box-shadow: 0 0 0 2px #8ed0f9;
+  }
+
+  &:hover {
+    background: rgba(29, 161, 142, 0.1);
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 15%;
+    left: calc(50% - 0.0625em);
+    width: 0.125em;
+    height: 70%;
+    border-radius: 0.125em;
+    transform: rotate(45deg);
+    background: currentcolor;
+    content: "";
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
 }

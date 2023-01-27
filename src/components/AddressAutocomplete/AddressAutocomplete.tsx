@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from "react";
 import debounce from "lodash.debounce";
 import { useQuery } from "react-query";
-import { GeoData, UseGeodataProp, SuggestionsProp, AddressAutocompleteProp } from "./types";
+import { GeoData, UseGeodataProp, AddressAutocompleteProp } from "../../types";
+import { Suggestions } from "../Suggestions/Suggestions";
 
 import styles from "./AddressAutocomplete.module.scss";
 
@@ -19,27 +20,6 @@ const useGeodata = (props: UseGeodataProp) => {
       console.error("Error on geodata request ", e);
     }
   });
-};
-
-const Suggestions = (props: SuggestionsProp) => {
-  return (
-    <ul className={styles.suggestions}>
-      {props.suggestions.map((suggestion, index) => {
-        return (
-          <li
-            className={styles.item}
-            key={index}
-            onClick={() => {
-              props.onSelect(suggestion.geometry.coordinates);
-              props.setSuggestionsActive(false);
-            }}
-          >
-            {suggestion.properties.formatted}
-          </li>
-        );
-      })}
-    </ul>
-  );
 };
 
 export const AddressAutocomplete = (props: AddressAutocompleteProp) => {

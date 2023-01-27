@@ -1,0 +1,13 @@
+.suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: start;
+  position: absolute;
+  left: 0;
+  top: 64px;
+  z-index: 1;
+  background-color: snow;
+  width: 100%;
+  border-radius: 10px;
+}
