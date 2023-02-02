@@ -10,8 +10,8 @@ type MapProp = {
 const Map = (props: MapProp) => {
   const mapContainer: any = useRef(null);
   const map: any = useRef(null);
+  const API_KEY: string = "Nfz4p1URHGgtVgTPXgky";
   const [zoom] = useState(14);
-  const [API_KEY] = useState("Nfz4p1URHGgtVgTPXgky");
 
   useEffect(() => {
     map.current = new maplibregl.Map({
