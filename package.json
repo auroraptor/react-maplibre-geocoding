@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://github.com/auroraptor/january-17",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.5",
@@ -49,8 +50,9 @@
     ]
   },
   "devDependencies": {
+    "@jest/globals": "^29.4.2",
     "@types/lodash.debounce": "^4.0.7",
     "gh-pages": "^5.0.0",
-    "jest": "^27.5.1"
+    "ts-jest": "^29.0.5"
   }
 }

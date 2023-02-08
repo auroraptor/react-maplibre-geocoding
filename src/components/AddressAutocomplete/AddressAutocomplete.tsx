@@ -6,7 +6,7 @@ import { Suggestions } from "../Suggestions/Suggestions";
 
 import styles from "./AddressAutocomplete.module.scss";
 
-const useGeodata = (props: UseGeodataProp) => {
+export const useGeodata = (props: UseGeodataProp) => {
   const API_KEY: string = "83a20212025a4afdbc9176d77d1cc513";
 
   return useQuery<GeoData[]>(["geoSearch", props.query], async (...args) => {
@@ -21,6 +21,8 @@ const useGeodata = (props: UseGeodataProp) => {
     }
   });
 };
+
+export const sum = (a: any, b: any) => a + b;
 
 export const AddressAutocomplete = (props: AddressAutocompleteProp) => {
   const [inputValue, setInputValue] = useState("");
