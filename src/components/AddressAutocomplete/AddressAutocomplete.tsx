@@ -22,7 +22,7 @@ export const useGeodata = (props: UseGeodataProp) => {
   });
 };
 
-export const sum = (a: any, b: any) => a + b;
+export const sum = (a: number, b: number) => a + b;
 
 export const AddressAutocomplete = (props: AddressAutocompleteProp) => {
   const [inputValue, setInputValue] = useState("");
